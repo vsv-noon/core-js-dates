@@ -31,8 +31,11 @@ function dateToTimestamp(date) {
  * Date(2023, 5, 1, 8, 20, 55) => '08:20:55'
  * Date(2015, 10, 20, 23, 15, 1) => '23:15:01'
  */
-function getTime(/* date */) {
-  throw new Error('Not implemented');
+function getTime(date) {
+  const hours = new Date(date).getHours();
+  const minutes = new Date(date).getMinutes();
+  const seconds = new Date(date).getSeconds();
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
 /**
@@ -46,8 +49,13 @@ function getTime(/* date */) {
  * '03 Dec 1995 00:12:00 UTC' => 'Sunday'
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
-function getDayName(/* date */) {
-  throw new Error('Not implemented');
+function getDayName(date) {
+  const d = new Date(date);
+  const longDayName = d.toLocaleString('en-US', {
+    weekday: 'long',
+    timeZone: 'UTC',
+  });
+  return longDayName;
 }
 
 /**
